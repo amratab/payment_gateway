@@ -1,0 +1,23 @@
+%html
+
+  %head
+    %script{:src=>"javascript/jquery.js", :type=>"text/javascript"}
+    %title Payment Gateway
+  %body
+    
+    %h1
+    - if(@result)
+      Your payment is successful
+    - else
+      Your payment is failed.
+    
+    %h2
+      Redirection to merchant website....
+:javascript   
+  $(function() {
+    setTimeout(redirect, 5000);
+     
+    function redirect() {
+      window.location= "#{@redirect_url}";
+    } 
+  });
