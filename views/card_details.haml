@@ -1,0 +1,15 @@
+%html
+
+  %head
+    %title My sinatra app
+  %body
+
+    %h1 
+      = "Payment details for your order " + @order_id.to_s + " ,amount " + @amount.to_s 
+    
+    %form{:action=>"/result", :method=>"POST"}
+      %input{:type=>"text", :placeholder => "Card number"}
+      %input{:type=>"text", :cvc => "CVC", :placeholder => "CVC"}
+      %input{:type => "text", :cvc => "Expiration date", :placeholder => "Expiration date"}
+      %input{:type=>"hidden", :name=>"order_id", :value=>"#{@order_id}"}
+      %input{:type=>"submit", :class=>"btn", :value=>"Pay"}

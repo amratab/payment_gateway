@@ -10,14 +10,17 @@
       Your payment is successful
     - else
       Your payment is failed.
-    
     %h2
       Redirection to merchant website....
+    %form#redirectForm{:action => "#{@post_url}", :method => "POST"}
+      %input{:type=>"hidden", :name=>"order_id", :value=>"#{@order_id}"}
+      %input{:type=>"hidden", :name=>"result", :value=>"#{@result_val}"}
+      
 :javascript   
   $(function() {
     setTimeout(redirect, 5000);
      
     function redirect() {
-      window.location= "#{@redirect_url}";
+      $('#redirectForm').submit();
     } 
   });

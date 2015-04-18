@@ -16,8 +16,16 @@ end
 
 post "/payment" do
   @order_id = params[:order_id]
-  @result = generateRandomResult()
-  @redirect_url = URI.decode(params["redirect_url"]) + "&result="
-  @redirect_url = @result ? @redirect_url + "success" :  @redirect_url + "failure"
-  haml :payment_page
+  @amount = params[:amount]
+  haml :card_details
 end
+
+post "/result" do
+  @order_id = params[:order_id]
+  @result = generateRandomResult()
+  @result_val = @result? "success" : "failure"
+  @post_url = "http://localhost:9292/pgcallback"
+  haml :result
+end
+
+
